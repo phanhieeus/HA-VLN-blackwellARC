@@ -148,6 +148,34 @@ docker run --gpus all -it --rm \
 
 The trainer reports component metrics; use the [participant toolkit](https://github.com/F1y1113/havln-challenge) for official action replay and Score.
 
+### Blackwell and Python 3.11–3.13
+
+The Blackwell launcher keeps HA-VLN 2.0's Habitat-Sim/Habitat-Lab API at **0.1.7** and leaves model and metric code unchanged. The tested profile is CPython 3.12.13, PyTorch 2.10.0+cu128, CUDA 12.8, and an RTX PRO 6000 Blackwell (compute capability 12.0). The launcher and compatibility shim cover Python 3.11–3.13, but each interpreter needs its own Habitat-Sim 0.1.7 build; only CPython 3.12 has been verified on Blackwell so far. Do not reuse a wheel built for another Python ABI.
+
+Install Habitat-Sim 0.1.7 for the active Python environment, plus the matching Habitat-Lab 0.1.7/CMA dependencies from the Native Installation instructions below. For a Blackwell GPU, use a PyTorch build with CUDA 12.8 or later. Then validate the runtime:
+
+```bash
+bash scripts/blackwell_env.sh
+python scripts/check_blackwell_runtime.py
+```
+
+`blackwell_env.sh` adds Habitat-Sim's bundled Corrade libraries to the loader path, selects NVIDIA EGL when present, and enables the scoped NumPy alias needed by Habitat-Sim 0.1.7. Run CMA from the supported environment with:
+
+```bash
+scripts/run_blackwell_cma.sh \
+  --exp-config config/cma_pm_da_aug_tune.yaml --run-type eval \
+  MODEL.DEPTH_ENCODER.ddppo_checkpoint NONE VIDEO_OPTION "[]"
+```
+
+To measure simulator rendering independently of policy inference, supply a scene already available under the Matterport Terms of Use:
+
+```bash
+source scripts/blackwell_env.sh
+python scripts/benchmark_habitat_sim.py --scene /path/to/scan.glb --warmup 20 --steps 200
+```
+
+A successful runtime import or simulator microbenchmark does not establish baseline reproduction. Full HA-VLN-CMA evaluation still requires the authorized Matterport scene layout, HA-R2R/HAPS data, and the released checkpoint; compare the same split and configuration with the published reference above.
+
 ### Alternative: Native Installation
 
 <details>
