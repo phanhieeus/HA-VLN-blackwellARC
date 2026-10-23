@@ -150,6 +150,10 @@ The trainer reports component metrics; use the [participant toolkit](https://git
 
 ### Blackwell and Python 3.11–3.13
 
+For offline wheel reuse, see [the Blackwell runtime cache guide](docs/blackwell-runtime-cache.md) and [the Kaggle verification report](docs/blackwell-kaggle-verification-2026-10-24.md). See the [fresh Kaggle session runbook](docs/kaggle-blackwell-fresh-session.md) to restore the repo and runtime cache without rebuilding. To build without notebook output-pipe stalls, use `scripts/build_habitat_sim_blackwell.py`.
+
+For Kaggle notebook build stalls and log handling, see [Blackwell build troubleshooting](docs/blackwell-build-troubleshooting.md).
+
 The Blackwell launcher keeps HA-VLN 2.0's Habitat-Sim/Habitat-Lab API at **0.1.7** and leaves model and metric code unchanged. The tested profile is CPython 3.12.13, PyTorch 2.10.0+cu128, CUDA 12.8, and an RTX PRO 6000 Blackwell (compute capability 12.0). The launcher and compatibility shim cover Python 3.11–3.13, but each interpreter needs its own Habitat-Sim 0.1.7 build; only CPython 3.12 has been verified on Blackwell so far. Do not reuse a wheel built for another Python ABI.
 
 Install Habitat-Sim 0.1.7 for the active Python environment, plus the matching Habitat-Lab 0.1.7/CMA dependencies from the Native Installation instructions below. For a Blackwell GPU, use a PyTorch build with CUDA 12.8 or later. Then validate the runtime:
@@ -174,7 +178,11 @@ source scripts/blackwell_env.sh
 python scripts/benchmark_habitat_sim.py --scene /path/to/scan.glb --warmup 20 --steps 200
 ```
 
-A successful runtime import or simulator microbenchmark does not establish baseline reproduction. Full HA-VLN-CMA evaluation still requires the authorized Matterport scene layout, HA-R2R/HAPS data, and the released checkpoint; compare the same split and configuration with the published reference above.
+A successful runtime import or simulator microbenchmark does not establish baseline reproduction. Full HA-VLN-CMA evaluation requires Matterport scenes, HA-R2R validation episodes, HAPS 2.0 human meshes, the human annotations, and the released CMA checkpoint; compare the same split and configuration with the published reference above.
+
+**Current Kaggle inventory (2026-10-24):** the attached phnvnh/mp3d-habitat Dataset supplies the 90 Matterport Habitat scene meshes, but its path is under /kaggle/input, not the repository's Data/scene_datasets/mp3d. Link or configure that path before evaluation; do not copy the 22.34 GB dataset into /kaggle/working. The repository already contains human annotations, collision baselines, vocabularies, and task source JSON, but the large validation inputs and checkpoint are absent from the attached Dataset.
+
+For the published CMA validation run, fetch the pinned artifacts listed in scripts/hf_resources.json with python scripts/download_hf.py --destination Data --target all from an Internet-enabled environment, then transfer them to the GPU notebook while preserving the Data/ paths. This includes the HAPS 2.0 archive (the script extracts it), HA-R2R val_seen and val_unseen episodes plus BERT-index files, and Data/checkpoints/HA-VLN-CMA/ckpt.39.pth. Copy the checkpoint to the model path shown in Quick Start. The Matterport files are separate and already attached in this session. The PointGoal DD-PPO ResNet weights under Data/ddppo-models/ are needed only if training from scratch, not when evaluating the released CMA checkpoint.
 
 ### Alternative: Native Installation
 
