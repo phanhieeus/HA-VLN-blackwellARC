@@ -143,3 +143,12 @@ logs/
 vis/
 tmp/
 *.pth
+
+# Local licensed data and generated evaluation outputs
+/Data/HAPS2_0/**
+/Data/HA-R2R/val_seen/
+/Data/HA-R2R/val_unseen/
+/Data/downloads/
+/Data/recompute_navmesh/
+/Data/scene_datasets/mp3d
+/agent/VLN-CE/data/

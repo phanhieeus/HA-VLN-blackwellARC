@@ -1,3 +1,5 @@
+> Updated CMA instructions: [fast restoration](kaggle-cma-fast-restore.md) and [complete dependencies and known failures](kaggle-cma-offline-reference.md). The original native runtime cache alone is insufficient for the CMA agent.
+
 # Fresh Kaggle Blackwell session runbook
 
 This runbook restores the HA-VLN Blackwell workspace in a new Kaggle session without rebuilding Habitat-Sim, provided the release assets and the same CPython 3.12 Kaggle image are used.

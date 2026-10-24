@@ -41,6 +41,16 @@ with warnings.catch_warnings():
     import tensorflow as tf  # noqa: F401
 
 
+def _numpy_json_default(value):
+    """Serialize NumPy values without changing metric aggregation."""
+    import numpy as np
+    if isinstance(value, np.generic):
+        return value.item()
+    if isinstance(value, np.ndarray):
+        return value.tolist()
+    raise TypeError(f"Object of type {type(value).__name__} is not JSON serializable")
+
+
 class BaseVLNCETrainer(BaseILTrainer):
     """A base trainer for VLN-CE imitation learning."""
 
@@ -482,14 +492,14 @@ class BaseVLNCETrainer(BaseILTrainer):
 
         if config.EVAL.SAVE_RESULTS:
             with open(fname, "w") as f:
-                json.dump(aggregated_stats, f, indent=4)
+                json.dump(aggregated_stats, f, indent=4, default=_numpy_json_default)
             if len(stats_info.keys()) != 0:
                 info_fname = os.path.join(
                     config.RESULTS_DIR,
                     f"stats_ckpt_{checkpoint_index}_{split}_info.json",
                 )
                 with open(info_fname, "w") as f:
-                    json.dump(stats_info, f, indent=4)
+                    json.dump(stats_info, f, indent=4, default=_numpy_json_default)
 
         logger.info(f"Episodes evaluated: {num_episodes}")
         checkpoint_num = checkpoint_index + 1
