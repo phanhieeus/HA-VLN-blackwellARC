@@ -4,6 +4,10 @@ Updated: 2026-10-24. Purpose: identify every input required by the original CMA 
 
 The first GitHub runtime release contains Habitat-Sim wheels only. It does **not** provide a complete CMA agent environment. A simulator import or render benchmark cannot establish that the policy can run.
 
+The complete prepared cache has now been uploaded privately as [`phnvnh/havln2-validation-cache`](https://www.kaggle.com/datasets/phnvnh/havln2-validation-cache). Authenticated Kaggle file listing verified **10 files**, including the opaque HAPS archive, complete dependency archive, released checkpoint, metadata, source bundle and restoration script. HAPS was not expanded into thousands of dataset input files. Fresh-session attachment/restoration time has not yet been measured.
+
+The complete dependency tar is **301,455,360 bytes**, SHA-256 `93b38ac1ef0603029723f0e9cb88c8ae138c7f8493ab55b51b8aa0ea161b101b`. It contains the installed native/agent wheels, pinned Habitat-Lab source, RGB initializer, integrity manifest and offline installer. Its package profile records the preinstalled tensor stack that a matching Kaggle image must provide.
+
 The current execution uses upstream `agent/run.py` and `config/cma_pm_da_aug_tune.yaml`. Setup scripts prepare files or start that command; they do not implement another evaluator.
 
 ## Verified environment
@@ -96,6 +100,8 @@ This subset covers both validation splits. It does not replace the full HAPS rel
 The original evaluator completed a one-episode policy/simulator loop. Initial attempts then failed during JSON export. The corrected JSON handler passed a focused check using NumPy scalars and arrays.
 
 Full `val_unseen` evaluation was subsequently started using the README command and default four environments. `val_seen` is queued after a successful unseen run. At the initial checkpoint, 124/1,839 unseen episodes had progressed, GPU utilization was 52%, and VRAM use was about 4,095 MiB. This is one sample, not a throughput benchmark.
+
+Code, the JSON compatibility fix, corrected launcher cwd and these instructions were pushed and remote-verified at commit `22da693a489e2a0f9acf2df740f139518a647c5a`. The prepared Dataset pins that evaluator snapshot. Later source documentation/restoration additions can have newer commits without changing the pinned evaluator.
 
 The render log identifies the NVIDIA RTX PRO 6000 renderer. CUDA availability and device selection were verified. `havln-runtime/gpu-telemetry.csv` records utilization, memory and power every five seconds.
 

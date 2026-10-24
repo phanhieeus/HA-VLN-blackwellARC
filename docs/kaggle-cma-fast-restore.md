@@ -12,6 +12,21 @@ Use this procedure for Python 3.12 Kaggle Blackwell sessions. The goal is to reu
 
 ## Restore files and install offline
 
+The prepared private Dataset [`phnvnh/havln2-validation-cache`](https://www.kaggle.com/datasets/phnvnh/havln2-validation-cache) contains 10 files, verified using authenticated Kaggle listing. On the next matching GPU session, attach that Dataset and `mp3d-habitat`, then run:
+
+```python
+from pathlib import Path
+import subprocess, sys
+cache = Path('/kaggle/input/datasets/phnvnh/havln2-validation-cache')
+subprocess.run([sys.executable, str(cache / 'restore_havln_cache.py'), str(cache)], check=True)
+```
+
+The restoration script validates the Python/tensor-stack profile and dependency archive hash, installs offline wheels, restores source and weights, links Matterport, and extracts HAPS once. It prints the environment variables and the original evaluation command. In an already restored workspace, it reuses the extraction marker. Use `--verify-existing` to recheck existing mesh CRCs when investigating corruption.
+
+Clean-session attachment and complete restoration have not yet been timed. A new session still needs local extraction. Generated dynamic navmeshes are not included in this first prepared Dataset; retain them separately after full evaluation.
+
+The numbered procedure below describes the individual operations and provides recovery steps when reconstructing this cache.
+
 1. Relay the Git bundle and native runtime release from the CPU notebook. Clone the bundle on the GPU into `/kaggle/working/HA-VLN`, branch `blackwell-py311-313`.
 2. Install the four native runtime wheels from the matching CPython 3.12 release.
 3. Restore the verified Habitat-Lab archive, extract it under `/kaggle/working/havln-runtime/habitat-lab`, and add the extracted source root to a site-packages `.pth` file. This provides both `habitat` and `habitat_baselines`.
@@ -61,7 +76,7 @@ Check process exit status and parse the resulting JSON. Expected output files ar
 
 Retain compiled wheels, verified source archives, RGB weights, Git bundle, HAPS subset manifest, validation files, checkpoint and generated navmeshes. The original 1.3 TB Matterport release is unnecessary for this Habitat workflow.
 
-Current sessions have prepared files, but a durable complete CMA cache must be saved and verified independently. GitHub's existing runtime release does not yet contain the agent dependencies added in this session. Do not mark this work complete until that cache is persisted.
+The complete dependency cache is now in the private prepared Dataset, and its 10-file listing was verified. GitHub's earlier native runtime release remains a smaller simulator-only artifact. The prepared Dataset's Git bundle pins evaluator commit `22da693`; source and docs are also available on branch `blackwell-py311-313`.
 
 For fresh notebooks, a private Kaggle cache containing a small number of opaque archive files can avoid indexing tens of thousands of HAPS input files. Use names such as `.zip.bin` when automatic expansion would defeat that packaging. Benchmark attachment and extraction time before claiming a startup improvement. Prepared archives still require extraction in a clean session.
 

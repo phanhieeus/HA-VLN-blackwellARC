@@ -1,4 +1,8 @@
 <br>
+
+
+> Blackwell offline CMA setup: [restore the complete prepared cache](docs/kaggle-cma-fast-restore.md). The first native Habitat-Sim wheel release needs additional agent dependencies and RGB weights. See the [exact offline dependency reference](docs/kaggle-cma-offline-reference.md) and [cache rebuild tools](docs/kaggle-cache-build-tools.md).
+
 <p align="center">
 
 <h1 align="center"><strong>HA-VLN 2.0: An Open Benchmark and Leaderboard for Human-Aware Navigation in Discrete and Continuous Environments with Dynamic Multi-Human Interactions</strong></h1>
