@@ -152,3 +152,5 @@ tmp/
 /Data/recompute_navmesh/
 /Data/scene_datasets/mp3d
 /agent/VLN-CE/data/
+
+/Data/runtime-benchmark/

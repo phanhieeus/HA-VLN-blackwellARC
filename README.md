@@ -1,5 +1,8 @@
 <br>
 
+> Measured Blackwell runtime bundle: [full validation and 1.70x paired speedup](docs/blackwell-cma-results-and-performance-2026-10-24.md). Enable scene templates, inference mode and eight environments using the documented original-evaluator command.
+
+
 
 > Blackwell offline CMA setup: [restore the complete prepared cache](docs/kaggle-cma-fast-restore.md). The first native Habitat-Sim wheel release needs additional agent dependencies and RGB weights. See the [exact offline dependency reference](docs/kaggle-cma-offline-reference.md) and [cache rebuild tools](docs/kaggle-cache-build-tools.md).
 

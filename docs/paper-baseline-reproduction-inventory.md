@@ -2,7 +2,7 @@
 
 **Scope:** reproduce the HA-VLN-CMA continuous-environment baseline for research by running the released code locally, either from the published checkpoint or by retraining. The goal is to run the paper's benchmark protocol and compare its locally reported metrics.
 
-**Current session update (2026-10-24):** validation data and 91,920 selected HAPS files have been staged and verified on a new Blackwell notebook using CPU-to-GPU relay. The original evaluator is running full `val_unseen`, with `val_seen` queued. Full paper metrics remain pending. Use the [current restoration procedure](kaggle-cma-fast-restore.md) and [complete dependency/error reference](kaggle-cma-offline-reference.md); older package upload status below is historical.
+**Current session update (2026-10-24):** both full validation runs completed using the original evaluator: 1,839 unseen and 778 seen episodes. Raw metrics are preserved and an optimization bundle measured 1.70x faster on a fixed 128-episode sample. See [results and performance](blackwell-cma-results-and-performance-2026-10-24.md), the [restoration procedure](kaggle-cma-fast-restore.md) and [dependency reference](kaggle-cma-offline-reference.md). Older package upload status below is historical.
 
 The repository's pinned resource manifest is scripts/hf_resources.json. Its Hugging Face source revision is c5f1cec167964bda3ba343acc3a18e7aef8540dd; its public annotation source revision is f46f93642d7ab96cc49611f8cfea09cecf2fa7f9. Do not substitute unpinned resources when comparing results.
 

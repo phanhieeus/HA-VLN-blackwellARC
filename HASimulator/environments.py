@@ -188,8 +188,13 @@ class HAVLNCE():
 
                 category = category.replace(" ", "_").replace("/", "_")
 
-                template_id = self.obj_templates_mgr.get_template_handle_by_ID(self.or_num +
-                                                (self.category2idx[f'{category}_{glb_index}'])*120+frame_id)
+                if self._template_scope == "scene":
+                    template_id = self._register_motion_templates(
+                        f"{category}_{glb_index}"
+                    )[frame_id]
+                else:
+                    template_id = self.obj_templates_mgr.get_template_handle_by_ID(self.or_num +
+                                                    (self.category2idx[f'{category}_{glb_index}'])*120+frame_id)
 
                 if translation is not None:
                     translations = mn.Vector3(translation)
@@ -212,7 +217,50 @@ class HAVLNCE():
             
             self._sim._human_posisions = human_positions
     
+    def _register_motion_templates(self, category):
+        """Cache exact original frame handles for one referenced motion."""
+        cached = self._motion_template_handles.get(category)
+        if cached is not None:
+            return cached
+        directory = os.path.join(self.data_path, category)
+        handles = {}
+        for template_id in self.obj_templates_mgr.load_configs(directory):
+            handle = self.obj_templates_mgr.get_template_handle_by_ID(template_id)
+            name = os.path.basename(handle)
+            suffix = ".object_config.json"
+            if not name.startswith("frame") or not name.endswith(suffix):
+                raise ValueError(f"Unexpected human template: {handle}")
+            frame = int(name[len("frame"):-len(suffix)])
+            if frame in handles:
+                raise ValueError(f"Duplicate human frame {frame}: {category}")
+            handles[frame] = handle
+        if set(handles) != set(range(120)):
+            raise ValueError(f"Motion must contain all 120 frames: {category}")
+        self._motion_template_handles[category] = handles
+        return handles
+
+    def _register_scene_motion_templates(self):
+        scan = self._sim._current_scene.split("/")[-2]
+        motions = self.human_motion_data.get(scan, {})
+        categories = {
+            f"{motion['category'].replace(' ', '_').replace('/', '_')}_{motion['index']}"
+            for motion in motions.values()
+        }
+        for category in sorted(categories):
+            self._register_motion_templates(category)
+        logger.info(f"Scene motion templates: {len(categories)} motions, "
+                    f"{len(categories) * 120} frames")
+
     def __init_manager__(self):
+        self._template_scope = os.environ.get("HAVLN_TEMPLATE_SCOPE", "all")
+        if self._template_scope not in ("all", "scene"):
+            raise ValueError("HAVLN_TEMPLATE_SCOPE must be all or scene")
+        self._motion_template_handles = {}
+        if self._template_scope == "scene":
+            # Register before the animation clock starts, as in the original path.
+            self._register_scene_motion_templates()
+            return
+
 
         self.obj_templates_mgr = self._sim.get_object_template_manager()
         

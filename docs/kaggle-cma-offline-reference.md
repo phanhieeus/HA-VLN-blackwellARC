@@ -107,6 +107,6 @@ The render log identifies the NVIDIA RTX PRO 6000 renderer. CUDA availability an
 
 No AMP, lower-precision weights, frame dropping, shortened episodes or reduced validation split is enabled in the full evaluation. Performance claims require measured throughput and result comparison. Preserve the four-environment run as the reference before comparing larger environment batches. Simulator CPU work, mesh decoding and navmesh generation can limit GPU utilization.
 
-The full metrics and equivalence to the paper remain pending until both evaluations complete and results are reviewed.
+Both full validation runs have now completed with status 0 and valid result JSON. The measured optimization bundle completed a paired 128-episode test with 1.70x end-to-end speedup. Full results, metric definitions and the bundled comparison are recorded in [the validation and performance report](blackwell-cma-results-and-performance-2026-10-24.md).
 
 Related: [Restore and run](kaggle-cma-fast-restore.md), [data inventory](paper-baseline-reproduction-inventory.md).

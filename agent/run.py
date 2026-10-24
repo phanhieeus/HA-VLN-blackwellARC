@@ -87,7 +87,11 @@ def run_exp(exp_config: str, run_type: str, opts=None) -> None:
     if run_type == "train":
         trainer.train()
     elif run_type == "eval":
-        trainer.eval()
+        if os.environ.get("HAVLN_FAST_INFERENCE", "0") == "1":
+            with torch.inference_mode():
+                trainer.eval()
+        else:
+            trainer.eval()
     elif run_type == "inference":
         trainer.inference()
 

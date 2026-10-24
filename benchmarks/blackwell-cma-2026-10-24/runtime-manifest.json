@@ -1,0 +1,126 @@
+{
+  "python": "3.12.13",
+  "platform": "Linux-6.18.55+-x86_64-with-glibc2.35",
+  "wheels": {
+    "braceexpand": {
+      "file": "braceexpand-0.1.7-py2.py3-none-any.whl",
+      "sha256": "91332d53de7828103dcae5773fb43bc34950b0c8160e35e0f44c4427a3b85014",
+      "installed": "0.1.7"
+    },
+    "decorator": {
+      "file": "decorator-4.4.2-py2.py3-none-any.whl",
+      "sha256": "41fa54c2a0cc4ba648be4fd43cff00aedf5b9465c9bf18d64325bc225f08f760",
+      "installed": "4.4.2"
+    },
+    "dtw": {
+      "file": "dtw-1.4.0-py3-none-any.whl",
+      "sha256": "e663aca9470231d5751f06907566c91759b7730813a906777134cd7301d23983",
+      "installed": "1.4.0"
+    },
+    "fastdtw": {
+      "file": "fastdtw-0.3.4-cp312-cp312-linux_x86_64.whl",
+      "sha256": "a0ec10b5435c47638205f29b20ea84b405e2625ec0d56ab6a4141864dee52efa",
+      "installed": "0.3.4"
+    },
+    "gdown": {
+      "file": "gdown-5.2.0-py3-none-any.whl",
+      "sha256": "33083832d82b1101bdd0e9df3edd0fbc0e1c5f14c9d8c38d2a35bf1683b526d6",
+      "installed": "5.2.0"
+    },
+    "gym": {
+      "file": "gym-0.17.3-py3-none-any.whl",
+      "sha256": "d593f7dad6f4217ffadb20ae8fe987beb99ef391a58b7223d7f840f3b948c557",
+      "installed": "0.17.3"
+    },
+    "habitat-sim": {
+      "file": "habitat_sim-0.1.7-cp312-cp312-linux_x86_64.whl",
+      "sha256": "e0fce90baa35bde08bd7288aa83239e29db8a0caaf2a211f8b0e58bc668f825d",
+      "installed": "0.1.7"
+    },
+    "ifcfg": {
+      "file": "ifcfg-0.24-py2.py3-none-any.whl",
+      "sha256": "950f31ddc3fdd877724fb4154b744434471106088ecf10170b96063c24b3c0b7",
+      "installed": "0.24"
+    },
+    "jsonlines": {
+      "file": "jsonlines-4.0.0-py3-none-any.whl",
+      "sha256": "185b334ff2ca5a91362993f42e83588a360cf95ce4b71a73548502bda52a7c55",
+      "installed": "4.0.0"
+    },
+    "lmdb": {
+      "file": "lmdb-1.7.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+      "sha256": "f2d9b7e102fcfe5e0cfb3acdebd403eb55ccbe5f7202d8f49d60bdafb1546d1e",
+      "installed": "1.7.5"
+    },
+    "magnum": {
+      "file": "magnum-0.0.0-cp312-cp312-linux_x86_64.whl",
+      "sha256": "f3e17cee2383abdbfa6a0a38ef840632280c4b5848d98acf1e929b71bac3099c",
+      "installed": "0.0.0"
+    },
+    "moviepy": {
+      "file": "moviepy-1.0.3-py3-none-any.whl",
+      "sha256": "495812a889cb710757dae5c25e970375ac8c17aa9716c63cf8da6bf25a94e3d3",
+      "installed": "1.0.3"
+    },
+    "msgpack-numpy": {
+      "file": "msgpack_numpy-0.4.8-py2.py3-none-any.whl",
+      "sha256": "773c19d4dfbae1b3c7b791083e2caf66983bb19b40901646f61d8731554ae3da",
+      "installed": "0.4.8"
+    },
+    "numpy-quaternion": {
+      "file": "numpy_quaternion-2024.0.13-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl",
+      "sha256": "cc2e037ad4269a8f7c9ccf37711cae16451745822e0e77db5a4da7c3633c51d1",
+      "installed": "2024.0.13"
+    },
+    "objectio": {
+      "file": "objectio-0.2.29-py3-none-any.whl",
+      "sha256": "2577426a393d0e8a5b27370798e493b89f2d8c5619614199ea5521e4feee6f11",
+      "installed": "0.2.29"
+    },
+    "proglog": {
+      "file": "proglog-0.1.12-py3-none-any.whl",
+      "sha256": "ccaafce51e80a81c65dc907a460c07ccb8ec1f78dc660cfd8f9ec3a22f01b84c",
+      "installed": "0.1.12"
+    },
+    "pybind11": {
+      "file": "pybind11-3.0.4-py3-none-any.whl",
+      "sha256": "961720ee652da51d531b7b2451a6bd2bc042b0106e6d9baa48ecb7d58034ce63",
+      "installed": "3.0.4"
+    },
+    "simplejson": {
+      "file": "simplejson-3.20.2-cp312-cp312-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+      "sha256": "979ce23ea663895ae39106946ef3d78527822d918a136dbc77b9e2b7f006237e",
+      "installed": "3.20.2"
+    },
+    "webdataset": {
+      "file": "webdataset-0.1.40-py3-none-any.whl",
+      "sha256": "f20e3f1143395a321fad7d6cc10e07c4b269f0270ef6fdc1d4ed94421bce1bf0",
+      "installed": "0.1.40"
+    },
+    "yacs": {
+      "file": "yacs-0.1.8-py3-none-any.whl",
+      "sha256": "99f893e30497a4b66842821bac316386f7bd5c4f47ad35c9073ef089aa33af32",
+      "installed": "0.1.8"
+    }
+  },
+  "preinstalled_versions": {
+    "torch": "2.10.0+cu128",
+    "torchvision": "0.25.0+cu128",
+    "numpy": "2.0.2",
+    "scipy": "1.16.3",
+    "numba": "0.60.0",
+    "attrs": "26.1.0",
+    "PyYAML": "6.0.3",
+    "msgpack": "1.1.2",
+    "Pillow": "11.3.0",
+    "tensorboard": "2.20.0",
+    "tensorflow": "2.20.0",
+    "tqdm": "4.67.3",
+    "imageio": "2.37.3",
+    "imageio-ffmpeg": "0.6.0"
+  },
+  "habitat_lab_revision": "d6ed1c0a0e786f16f261de2beafe347f4186d0d8",
+  "torch_home": "/kaggle/working/havln-runtime/torch-cache",
+  "archive_bytes": 301455360,
+  "archive_sha256": "93b38ac1ef0603029723f0e9cb88c8ae138c7f8493ab55b51b8aa0ea161b101b"
+}
